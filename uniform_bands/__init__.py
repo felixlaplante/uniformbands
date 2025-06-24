@@ -15,7 +15,7 @@ def _uniform(F_lo, F_hi, alpha):
 
 def _student(F_lo, F_hi, alpha, eps, min_val, max_val):
     mean_lo, mean_hi = F_lo.mean(axis=0), F_hi.mean(axis=0)
-    std_lo, std_hi = F_lo.std(axis=0) + eps, F_hi.std(axis=0)
+    std_lo, std_hi = F_lo.std(axis=0) + eps, F_hi.std(axis=0) + eps
     T_lo, T_hi = (F_lo - mean_lo) / std_lo, (F_hi - mean_hi) / std_hi
     infT, supT = T_lo.min(axis=1), T_hi.max(axis=1)
     q_lo, q_hi = np.quantile(infT, alpha / 2), np.quantile(supT, 1 - alpha / 2)
